@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost/api-contact/api/';
+const apiUrl = 'http://localhost/api-contact-php/api/';
 
 const contactsTable = document.getElementById('contacts-table')
 
@@ -21,7 +21,7 @@ const loadContacts = async () => {
         <td>${contact.phone}</td>
         <td>
           <div class="d-flex gap-2">
-            <button class="btn btn-warning btn-sm" onclick="editContact(${contact.id}, '${contact.name}', '${contact.email}')">Editar</button>
+            <button class="btn btn-warning btn-sm" onclick="editContact(${contact.id}, '${contact.name}', '${contact.email}', '${contact.phone}')">Editar</button>
         <button class="btn btn-danger btn-sm" onclick="deleteContact(${contact.id}, '${contact.name}')">Excluir</button>
           </div>
         </td>
@@ -33,13 +33,14 @@ const loadContacts = async () => {
   }
 };
 
-const editContact = async (id, name, email) => {
+const editContact = async (id, name, email, phone) => {
 
   let editName = prompt('Editar nome: ', `${name}`);
   let editEmail = prompt('Editar email: ', `${email}`);
-
-  if (editName == null || editName == "" || editEmail == null || editEmail == "") {
-    alert('Nome ou email não podem ser vazios.');
+  let editPhone = prompt('Editar telemovel: ', `${phone}`);
+  
+  if (editName == null || editName == "" || editEmail == null || editEmail == "" || editPhone == null || editPhone == "") {
+    alert('Nome, email ou telemovel não podem ser vazios.');
     return;
   }
 
@@ -52,7 +53,8 @@ const editContact = async (id, name, email) => {
       body: JSON.stringify({
         id: id,
         name: editName,
-        email: editEmail
+        email: editEmail,
+        phone: editPhone
       })
     });
 

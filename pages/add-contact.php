@@ -1,5 +1,5 @@
 <?php
-$apiUrl = 'http://localhost/api-contact/api/';
+$apiUrl = 'http://localhost/api-contact-php/api/';
 
 $name = $_POST['name'];
 $email = $_POST['email'];
